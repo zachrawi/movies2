@@ -1,6 +1,8 @@
 package com.zachrawi.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.Image;
@@ -36,7 +38,9 @@ public class DetailActivity extends AppCompatActivity {
 
     ArrayList<Video> mVideos;
     ListView mListView;
+    RecyclerView mRecyclerView;
     VideoAdapter mVideoAdapter;
+    VideoRecyclerAdapter mVideoRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +62,17 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvOverview = findViewById(R.id.tvOverview);
         mListView = findViewById(R.id.listViewVideo);
+        mRecyclerView = findViewById(R.id.recyclerView);
 
         mVideoAdapter = new VideoAdapter(this, R.layout.item_video, mVideos);
+        mVideoRecyclerAdapter = new VideoRecyclerAdapter(this, R.layout.item_video, mVideos);
+
         mListView.setAdapter(mVideoAdapter);
+        mRecyclerView.setAdapter(mVideoRecyclerAdapter);
+
+        // LayoutManager
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -119,6 +131,7 @@ public class DetailActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     mVideoAdapter.notifyDataSetChanged();
+                                    mVideoRecyclerAdapter.notifyDataSetChanged();
                                 }
                             });
                         }

@@ -59,12 +59,18 @@
                 android:textSize="20sp"
                 android:text="Trailer" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <ListView
                 android:id="@+id/listViewVideo"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:divider="@android:color/transparent"
-                android:layout_height="1000dp"/>
+                android:layout_height="1000dp"
+                android:visibility="gone"/>
         </LinearLayout>
     </RelativeLayout>
 

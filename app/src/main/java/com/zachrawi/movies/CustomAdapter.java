@@ -56,7 +56,11 @@ public class CustomAdapter extends ArrayAdapter<Movie> {
         Movie movie = mMovies.get(position);
 
         // 5) render ke view
-        Picasso.with(mContext).load(movie.getPoster()).into(viewHolder.poster);
+        Picasso
+                .with(mContext)
+                .load(movie.getPoster())
+                .placeholder(R.drawable.placeholder)
+                .into(viewHolder.poster);
 
         return convertView;
     }
